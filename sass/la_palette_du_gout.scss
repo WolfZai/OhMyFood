@@ -1,0 +1,374 @@
+@import "variables";
+@import "mixins";
+
+body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+
+// Styles pour l'en-tête du restaurant
+.restaurant-header {
+  position: relative;
+  padding: 15px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .back-btn {
+    position: absolute;
+    left: 15px;
+    font-size: 1.2rem;
+    color: $color-text-dark;
+    text-decoration: none;
+  }
+  
+  .logo {
+    img {
+      height: 30px;
+    }
+  }
+}
+
+// Bannière du restaurant
+.restaurant-banner {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// Menu du restaurant
+.restaurant-menu {
+  position: relative;
+  margin-top: -30px;
+  border-radius: 30px 30px 0 0;
+  background-color: $color-background-light;
+  padding: 20px 15px;
+  width: 100%;
+  
+  // En-tête du menu avec titre et bouton like
+  .menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    
+    h1 {
+      font-family: 'Shrikhand', cursive;
+      font-size: 1.7rem;
+      font-weight: 400;
+    }
+    
+    .like-btn {
+      @include heart-animation;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+  }
+  
+  // Sections du menu (Entrées, Plats, Desserts)
+  .menu-sections {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .menu-category {
+    margin-bottom: 35px;
+    width: 100%; // Prend toute la largeur en mobile
+    
+    .category-title {
+      font-size: 1rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      position: relative;
+      margin-bottom: 20px;
+      
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 40px;
+        height: 3px;
+        background-color: $color-tertiary;
+      }
+    }
+  }
+  
+  // Items du menu
+  .menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-x: hidden;
+  }
+  
+  .menu-item {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    animation: appear 0.8s ease-in-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+    
+    &-content {
+      flex: 1;
+      padding: 15px 0 15px 15px;
+      overflow: hidden;
+      transition: all 0.5s ease;
+      
+      h3 {
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: clip; // Pas d'ellipsis par défaut
+      }
+      
+      p {
+        font-weight: 300;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: clip; // Pas d'ellipsis par défaut
+      }
+    }
+    
+    &-price {
+      display: flex;
+      align-items: flex-end;
+      padding: 14px;
+      font-weight: 700;
+      transition: all 0.5s ease;
+    }
+    
+    &-check {
+      width: 0; // Largeur de 0 par défaut (caché)
+      background-color: $color-tertiary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden; // Cache le débordement
+      transition: width 0.5s ease;
+      
+      i {
+        color: white;
+        font-size: 1.2rem;
+        transform: rotate(0);
+        transition: transform 0.5s ease;
+        padding: 0 20px; // Ajoute de l'espace à l'intérieur
+        white-space: nowrap; // Empêche l'icône de passer à la ligne
+      }
+    }
+    
+    &:hover {
+      .menu-item-content {
+        flex-shrink: 1; // Permet la réduction
+        
+        h3, p {
+          text-overflow: ellipsis; // Activer l'ellipsis au survol
+        }
+      }
+      
+      
+      .menu-item-check {
+        width: 60px; // Fait apparaître le bouton de validation
+        
+        i {
+          transform: rotate(360deg); // Rotation de l'icône
+        }
+      }
+    }
+  }
+  
+  
+  
+  // Animation progressive des plats
+  // ENTRÉES
+  .menu-category:nth-child(1) {
+    .menu-item:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+    .menu-item:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    .menu-item:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+  }
+  
+  // PLATS
+  .menu-category:nth-child(2) {
+    .menu-item:nth-child(1) {
+      animation-delay: 0.4s;
+    }
+    .menu-item:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+    .menu-item:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+  }
+  
+  // DESSERTS
+  .menu-category:nth-child(3) {
+    .menu-item:nth-child(1) {
+      animation-delay: 0.7s;
+    }
+    .menu-item:nth-child(2) {
+      animation-delay: 0.8s;
+    }
+    .menu-item:nth-child(3) {
+      animation-delay: 0.9s;
+    }
+  }
+  
+  // Bouton de commande
+  .order-btn-container {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .order-btn {
+    @include primary-button;
+    padding: 15px 50px;
+  }
+}
+
+// Animation d'apparition des plats
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Styles pour le footer
+footer {
+  background-color: #353535;
+  color: white;
+  padding: 25px 0;
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+
+    @media (min-width: 1024px) {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+  
+  .footer-logo {
+    h2 {
+      font-family: 'Shrikhand', cursive;
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 15px;
+
+      @media (min-width: 1024px) {
+        margin-bottom: 0;
+        margin-left: 40px;
+      }
+    }
+  }
+  
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    @media (min-width: 1024px) {
+      display: flex;
+    }
+    
+    li {
+      margin-bottom: 10px;
+
+      @media (min-width: 1024px) {
+        margin-bottom: 0;
+        margin-right: 20px;
+      }
+    }
+    
+    a {
+      color: white;
+      text-decoration: none;
+      
+      i {
+        width: 20px;
+        margin-right: 8px;
+      }
+      
+      &:hover {
+        color: $color-tertiary;
+      }
+    }
+  }
+}
+
+// Media queries pour tablettes
+@media (min-width: 768px) {
+  .restaurant-menu {
+    padding: 30px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    
+    .menu-category {
+      width: 80%;
+    }
+  }
+}
+
+// Media queries pour desktop
+@media (min-width: 1024px) {
+  .restaurant-banner {
+    height: 350px;
+  }
+  
+  .restaurant-menu {
+    max-width: 1200px;
+    width: 77%;
+    margin: -50px auto 0;
+    padding: 40px 60px;
+    
+    .menu-category {
+      width: 70%;
+    }
+  }
+}

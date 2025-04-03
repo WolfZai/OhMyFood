@@ -1,0 +1,51 @@
+// Mixin pour les boutons principaux
+@mixin primary-button {
+  background: linear-gradient(to bottom right, $color-secondary, $color-primary);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 15px 20px;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    opacity: 0.9;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+}
+
+// Mixin pour l'animation du cœur
+@mixin heart-animation {
+  position: relative;
+  font-size: 1.5rem;
+  cursor: pointer;
+  
+  .far {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .fas {
+    opacity: 0;
+    background: linear-gradient($color-secondary, $color-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: opacity 0.3s ease;
+  }
+  
+  
+  &:hover {
+    .far {
+      opacity: 0;
+    }
+    
+    .fas {
+      opacity: 1;
+    }
+  }
+}

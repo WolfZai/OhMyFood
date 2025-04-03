@@ -1,5 +1,4 @@
 @charset "UTF-8";
-/* Styles pour la première page - OhMyFood */
 /* Approche Mobile-first */
 /* Variables */
 /* Reset et styles de base */
@@ -236,8 +235,9 @@ header .location span {
   font-weight: 300;
 }
 .restaurants .restaurant-cards .card .card-content .favorite {
-  font-size: 1.5rem;
   position: relative;
+  cursor: pointer;
+  font-size: 1.5rem;
 }
 .restaurants .restaurant-cards .card .card-content .favorite .far {
   transition: opacity 0.3s ease;
@@ -247,17 +247,20 @@ header .location span {
   top: 0;
   left: 0;
   opacity: 0;
-  background: linear-gradient(#9356DC, #FF79DA);
-  -webkit-background-clip: text;
+  background: linear-gradient(#FF79DA, #9356DC);
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: opacity 0.3s ease;
+  transform: scale(0);
+  transition: all 0.3s ease;
 }
-.restaurants .restaurant-cards .card .card-content .favorite:hover .far {
+.restaurants .restaurant-cards .card .card-content .favorite:hover .far, .restaurants .restaurant-cards .card .card-content .favorite:active .far {
   opacity: 0;
 }
-.restaurants .restaurant-cards .card .card-content .favorite:hover .fas {
+.restaurants .restaurant-cards .card .card-content .favorite:hover .fas, .restaurants .restaurant-cards .card .card-content .favorite:active .fas {
   opacity: 1;
+  transform: scale(1.1);
 }
 
 /* Pied de page */
@@ -307,8 +310,7 @@ footer .footer-links li a:hover {
     flex-wrap: wrap;
   }
   .restaurants .restaurant-cards .card {
-    flex: 1 0 calc(50% - 1rem);
-    min-width: 300px;
+    width: calc(50% - 1rem);
   }
 }
 /* Responsive - Desktop */
@@ -333,9 +335,6 @@ footer .footer-links li a:hover {
   .restaurants {
     max-width: 1200px;
     margin: 0 auto;
-  }
-  .restaurants .restaurant-cards .card {
-    flex: 1 0 calc(25% - 1rem);
   }
   footer {
     display: flex;
