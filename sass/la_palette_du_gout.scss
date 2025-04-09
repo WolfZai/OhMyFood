@@ -9,7 +9,10 @@ body {
   }
   
   * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
   }
 
 // Styles pour l'en-tête du restaurant
@@ -97,7 +100,7 @@ body {
   
   .menu-category {
     margin-bottom: 35px;
-    width: 100%; // Prend toute la largeur en mobile
+    width: 100%;
     
     .category-title {
       font-size: 1rem;
@@ -149,7 +152,7 @@ body {
         margin-bottom: 5px;
         white-space: nowrap;
         overflow: hidden;
-        text-overflow: clip; // Pas d'ellipsis par défaut
+        text-overflow: ellipsis;
       }
       
       p {
@@ -157,14 +160,14 @@ body {
         font-size: 0.9rem;
         white-space: nowrap;
         overflow: hidden;
-        text-overflow: clip; // Pas d'ellipsis par défaut
+        text-overflow: ellipsis;
       }
     }
     
     &-price {
       display: flex;
       align-items: flex-end;
-      padding: 14px;
+      padding: 14px 14px 27px 14px;
       font-weight: 700;
       transition: all 0.5s ease;
     }
@@ -200,10 +203,6 @@ body {
       
       .menu-item-check {
         width: 60px; // Fait apparaître le bouton de validation
-        
-        i {
-          transform: rotate(360deg); // Rotation de l'icône
-        }
       }
     }
   }
@@ -348,6 +347,13 @@ footer {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+
+    .menu-header {
+      justify-content: center;
+      h1 {
+        margin-right: 30px;
+      }
+    }
     
     .menu-category {
       width: 80%;
